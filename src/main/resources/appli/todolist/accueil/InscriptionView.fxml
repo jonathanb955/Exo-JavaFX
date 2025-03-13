@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="appli.todolist.accueil.InscriptionController"
-            prefHeight="400.0" prefWidth="600.0">
 
-</AnchorPane>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="217.0" layoutY="22.0" text="Inscription" underline="true">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="287.0" layoutY="87.0" text="Nom" underline="true" />
+      <Label layoutX="279.0" layoutY="154.0" text="Prenom" underline="true" />
+      <Label layoutX="286.0" layoutY="213.0" text="Email" underline="true" />
+      <Label layoutX="264.0" layoutY="282.0" text="Mot de passe" underline="true" />
+      <Label layoutX="265.0" layoutY="348.0" text="Confirmation" underline="true" />
+      <Label fx:id="boutonLabelErreurInscrip" layoutX="268.0" layoutY="426.0" text="Label erreur" textFill="RED" />
+      <Button fx:id="boutonInscriptionInscrip" layoutX="264.0" layoutY="467.0" mnemonicParsing="false" text="Inscription" />
+      <Button fx:id="boutonRetour" layoutX="274.0" layoutY="501.0" mnemonicParsing="false" text="Retour" />
+      <PasswordField fx:id="mdpCaseInscrip" layoutX="226.0" layoutY="308.0" />
+      <TextField fx:id="nomCase" layoutX="225.0" layoutY="111.0" />
+      <TextField fx:id="prenomCase" layoutX="226.0" layoutY="180.0" />
+      <TextField fx:id="emailCaseInscrip" layoutX="226.0" layoutY="238.0" />
+      <PasswordField fx:id="confirmationMDP" layoutX="226.0" layoutY="374.0" />
+   </children>
+</Pane>
