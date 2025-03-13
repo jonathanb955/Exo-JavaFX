@@ -1,10 +1,14 @@
-package appli.todolist.accueil;
+package appli.accueil;
 
+import appli.StartApplication;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
 
 
 public class LoginController {
@@ -47,8 +51,8 @@ public class LoginController {
             labelErreur.setText("Lien pouur changer le mdp");
             }
 
-            public void inscription (){
-            System.out.println("Redirection vers le lien pour l'inscription");
+    public void inscription (ActionEvent event) throws IOException {
+                StartApplication.changeScene("accueil/Inscription");
         }
 
         public void emailUtilisateur (){

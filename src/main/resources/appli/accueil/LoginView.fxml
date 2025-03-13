@@ -9,7 +9,7 @@
 
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-    fx:controller="appli.todolist.accueil.LoginController">
+    fx:controller="appli.accueil.LoginController">
    <children>
       <Label contentDisplay="TOP" layoutX="215.0" layoutY="33.0" text="Bienvenue" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" underline="true">
          <font>
@@ -30,7 +30,7 @@
       </Label>
       <Button fx:id="boutonConnexion" layoutX="264.0" layoutY="255.0" mnemonicParsing="false" onAction="#seConnecter" text="Connexion" />
       <Button fx:id="boutonMdpOublie" layoutX="238.0" layoutY="287.0" mnemonicParsing="false" onAction="#mdpOublie" text="Mot de passe oublié" />
-      <Button fx:id="butonInscription" layoutX="264.0" layoutY="319.0" mnemonicParsing="false" onAction="#inscription" text="Inscription" />
+      <Button fx:id="butonInscription" layoutX="264.0" layoutY="319.0" mnemonicParsing="false" onAction="#inscription" text="Inscription"/>
       <Label fx:id="labelErreur" layoutX="254.0" layoutY="225.0"  text="Label pour erreur" textFill="RED" />
    </children>
 </Pane>
