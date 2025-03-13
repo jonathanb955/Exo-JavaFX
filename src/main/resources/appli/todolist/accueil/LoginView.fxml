@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="appli.todolist.accueil.LoginController">
+   <children>
+      <Label contentDisplay="TOP" layoutX="215.0" layoutY="33.0" text="Bienvenue" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" underline="true">
+         <font>
+            <Font name="Arial" size="36.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="mdpCase" layoutX="226.0" layoutY="188.0" onAction="#mdpUtilisateur" />
+      <TextField fx:id="emailCase" layoutX="226.0" layoutY="120.0" onAction="#emailUtilisateur" />
+      <Label layoutX="283.0" layoutY="100.0" text="Email" underline="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="258.0" layoutY="168.0" text="Mot de passe" underline="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="boutonConnexion" layoutX="264.0" layoutY="255.0" mnemonicParsing="false" onAction="#seConnecter" text="Connexion" />
+      <Button fx:id="boutonMdpOublie" layoutX="238.0" layoutY="287.0" mnemonicParsing="false" onAction="#mdpOublie" text="Mot de passe oublié" />
+      <Button fx:id="butonInscription" layoutX="264.0" layoutY="319.0" mnemonicParsing="false" onAction="#inscription" text="Inscription" />
+      <Label fx:id="labelErreur" layoutX="254.0" layoutY="225.0"  text="Label pour erreur" textFill="RED" />
+   </children>
+</Pane>
