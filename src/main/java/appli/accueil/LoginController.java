@@ -7,11 +7,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import repository.UtlisateurRepository;
+import model.Utilisateur;
 
 import java.io.IOException;
 
 
 public class LoginController {
+
 
     @FXML
     private Button boutonConnexion;
@@ -31,6 +34,7 @@ public class LoginController {
     @FXML
     private PasswordField mdpCase;
 
+    private UtilisateurRepository utilisateurRepository = new UtilisateurRepository();
 
 
         public void seConnecter () {

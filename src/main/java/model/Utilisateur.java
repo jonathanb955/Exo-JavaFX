@@ -1,5 +1,10 @@
 package model;
 
+
+
+
+
+
 public class Utilisateur {
     private int idUtilisateur;
     private String nom;
@@ -32,10 +37,13 @@ public class Utilisateur {
         this.mdp = mdp;
     }
 
+
+
     public void toString (String email, String mdp) {
         System.out.println(" Votre mail: "+email+
         "\n Votre mot de passe: "+mdp);
     }
+
 
     public int getIdUtilisateur() {
         return idUtilisateur;
