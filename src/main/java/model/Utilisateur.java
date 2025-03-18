@@ -1,21 +1,51 @@
 package model;
 
 public class Utilisateur {
+    private int idUtilisateur;
     private String nom;
     private String prenom;
     private String email;
     private String mdp;
+    private String role;
 
 
-    public Utilisateur(String nom, String prenom, String email, String mdp) {
+    public Utilisateur(int idUtilisateur, String nom, String prenom, String email, String mdp, String role) {
+        this.idUtilisateur = idUtilisateur;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.mdp = mdp;
+        this.role = role;
+}
 
+    public Utilisateur(String nom, String prenom, String email, String mdp,String role) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.mdp = mdp;
+        this.role = role;
 
-        
     }
+
+    public Utilisateur(String email, String mdp) {
+        this.email = email;
+        this.mdp = mdp;
+    }
+
+    public void toString (String email, String mdp) {
+        System.out.println(" Votre mail: "+email+
+        "\n Votre mot de passe: "+mdp);
+    }
+
+    public int getIdUtilisateur() {
+        return idUtilisateur;
+    }
+
+    public void setIdUtilisateur(int idUtilisateur) {
+        this.idUtilisateur = idUtilisateur;
+    }
+
+
 
     public String getNom() {
         return nom;
@@ -47,5 +77,13 @@ public class Utilisateur {
 
     public void setMdp(String mdp) {
         this.mdp = mdp;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

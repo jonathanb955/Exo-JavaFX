@@ -9,7 +9,7 @@ import java.sql.SQLException;
         private static final String UTILISATEUR = "root";
         private static final String MOT_DE_PASSE = "";
         private static String getUrl() {
-            return "jdbc:mysql://" + SERVEUR + ":3307/" + NOM_BDD + "?serverTimezone=UTC";
+            return "jdbc:mysql://" + SERVEUR + "/" + NOM_BDD + "?serverTimezone=UTC";
         }
         public static Connection getConnexion() {
             Connection cnx = null;
@@ -21,14 +21,8 @@ import java.sql.SQLException;
             }
             return cnx;
         }
-        public static void main(String[] args) {
-            Connection cnx = getConnexion();
-            if (cnx != null) {
-                System.out.println("Connexion établie avec succès !");
-            } else {
-                System.out.println("Échec de la connexion à la base de données.");
-            }
+
         }
 
-    }
+
 
