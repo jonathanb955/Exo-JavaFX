@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 
 
-public class UtlisateurRepository {
+public class UtilisateurRepository {
     private Connection connexion;
 
-    public UtlisateurRepository() {
+    public UtilisateurRepository() {
         this.connexion = Database.getConnexion();
     }
 
@@ -33,7 +33,7 @@ public class UtlisateurRepository {
     }
 
 
-    public Utilisateur getUtilisateurParEmail(Utilisateur utilisateur, String email) {
+    public Utilisateur getUtilisateurParEmail(String email) {
         String sql = "SELECT * FROM utilisateurs WHERE email = ?";
         int idUtilisateur = 0;
         String nom = "";
@@ -41,6 +41,7 @@ public class UtlisateurRepository {
         String mdp = "";
         String role = "";
 
+        Utilisateur utilisateur = null;
         try {
             PreparedStatement stmt = connexion.prepareStatement(sql);
             stmt.setString(1, utilisateur.getEmail());
@@ -66,6 +67,8 @@ public class UtlisateurRepository {
 
             role = rs.getString("role");
             System.out.println("Votre role: " + role);
+
+            Utilisateur utilisateur1 = new Utilisateur(nom, prenom, email, mdp, role);
 
         } catch (SQLException e) {
             System.out.println("Erreur! Utilisateur non trouvé: " + e.getMessage());

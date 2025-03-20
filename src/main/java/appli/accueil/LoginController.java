@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import repository.UtlisateurRepository;
+import repository.UtilisateurRepository;
 import model.Utilisateur;
 
 import java.io.IOException;
@@ -34,23 +34,33 @@ public class LoginController {
     @FXML
     private PasswordField mdpCase;
 
+
+
     private UtilisateurRepository utilisateurRepository = new UtilisateurRepository();
 
 
-        public void seConnecter () {
-            String email = emailCase.getText();
-            String mdp = mdpCase.getText();
+    public void seConnecter () throws IOException {
+        Utilisateur utilisateurTrouve = utilisateurRepository.getUtilisateurParEmail(emailCase.getText());
+        String email = emailCase.getText();
+        String mdp = mdpCase.getText();
 
-            if (email.isEmpty() || mdp.isEmpty()) {
-                labelErreur.setText("Veuillez remplir tous les champs");
-            } else if (email.equals("jb@gmail.com") && mdp.equals("JBAO")) {
-                System.out.println("Heureux de vous revoir parmis nous!");
-            } else {
-                labelErreur.setText("Identifiants incorrect!");
-            }
+        if (email.isEmpty() || mdp.isEmpty()) {
+            labelErreur.setText("Veuillez remplir tous les champs");
+        } else if (utilisateurTrouve == null) {
+            System.out.println("Utilisateur non trouvé");
+        }else if(utilisateurTrouve.getMdp().equals(mdp)){
+            StartApplication.changeScene("accueil/AccueilView");
+        } else {
+            labelErreur.setText("Mot de passe incorrect!");
         }
+    }
 
-        public void mdpOublie (){
+
+
+
+
+
+    public void mdpOublie (){
             System.out.println("Redirection vers le lien pour changer le mdp");
             labelErreur.setText("Lien pouur changer le mdp");
             }
