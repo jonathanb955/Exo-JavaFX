@@ -8,12 +8,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import model.Utilisateur;
+import repository.UtilisateurRepository;
+
+
 
 
 
     import java.io.IOException;
 
 public class InscriptionController {
+
 
 
 
@@ -42,6 +47,10 @@ public class InscriptionController {
         private TextField prenomCase;
 
 
+    private final UtilisateurRepository utilisateurRepository = new UtilisateurRepository();
+
+
+
     public void retourBouton (ActionEvent event) throws IOException {
         StartApplication.changeScene("accueil/Login");
 
@@ -62,10 +71,10 @@ public class InscriptionController {
         public void confirmationMdpUtil(){
                 String confirmationMdp= confirmationMDP.getText();
 
-                if(mdpCaseInscrip.getText().equals(confirmationMdp)){
-                        System.out.println("Inscription réussite!");
+                if(!mdpCaseInscrip.getText().equals(confirmationMdp)){
+                        System.out.println("Le mot de passe ne corresponds pas à ce que vous avez écrit");
                 }else{
-                        boutonLabelErreurInscrip.setText("Le mot de passe ne corresponds pas à ce que vous avez écrit");
+                        boutonLabelErreurInscrip.setText(" Inscription réussite!");
                 }
         }
 
@@ -82,7 +91,7 @@ public class InscriptionController {
                         boutonInscriptionInscrip.setText("Inscription réussite!");
                 }
 
-                if(mdpCaseInscrip.getText().equals(confirmationMdp)){
+                if(confirmationMDP.getText().equals(mdp)){
                         System.out.println("Inscription réussite!");
                 }else{
                         boutonLabelErreurInscrip.setText("Le mot de passe ne corresponds pas à ce que vous avez écrit");
@@ -90,6 +99,9 @@ public class InscriptionController {
         }
 
 
+    public UtilisateurRepository getUtilisateurRepository() {
+        return utilisateurRepository;
     }
+}
 
 

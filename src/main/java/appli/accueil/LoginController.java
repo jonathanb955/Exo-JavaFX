@@ -36,7 +36,7 @@ public class LoginController {
 
 
 
-    private UtilisateurRepository utilisateurRepository = new UtilisateurRepository();
+    private final UtilisateurRepository utilisateurRepository = new UtilisateurRepository();
 
 
     public void seConnecter () throws IOException {
