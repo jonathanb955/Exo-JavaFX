@@ -62,6 +62,10 @@ public class LoginController {
             labelErreur.setText("Email ou mot de passe incorrect.");
             labelErreur.setVisible(true);
         }
+        Utilisateur utilisateurActuel = SessionUtilisateur.getInstance().getUtilisateur();
+        if (utilisateurActuel != null) {
+            System.out.println("Utilisateur connecté : " + utilisateurActuel.getNom());
+        }
     }
 
     public void mdpOublie (){
