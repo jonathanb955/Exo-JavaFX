@@ -84,49 +84,57 @@ public class InscriptionController {
                 }
         }
 
-        public void verifChamps () {
-               String nom= nomCase.getText();
-               String prenom= prenomCase.getText();
-               String email= emailCaseInscrip.getText();
-               String mdp= mdpCaseInscrip.getText();
-               String confirmationMdp= confirmationMDP.getText();
 
-                if (nom.isEmpty()|| prenom.isEmpty()||email.isEmpty() || mdp.isEmpty()) {
-                        boutonLabelErreurInscrip.setText("Veuillez remplir tous les champs");
-                } else {
-                        boutonInscriptionInscrip.setText("Inscription réussite!");
-                }
 
-                if(confirmationMDP.getText().equals(mdp)){
-                        System.out.println("Inscription réussite!");
-                }else{
-                        boutonLabelErreurInscrip.setText("Le mot de passe ne corresponds pas à ce que vous avez écrit");
-                }
+    @FXML
+    public void boutonInscriptionInscrip() {
+        String nom = nomCase.getText();
+        String prenom = prenomCase.getText();
+        String email = emailCaseInscrip.getText();
+        String mdp = mdpCaseInscrip.getText();
+
+
+        Utilisateur utilisateurExistant = utilisateurRepository.getUtilisateurParEmail(email);
+        if (utilisateurExistant != null) {
+            boutonLabelErreurInscrip.setText("Cet email est déjà utilisé !");
+            return;
         }
-        public void InsriptionUtil(){
-        String nom= nomCase.getText();
-        String prenom= prenomCase.getText();
-        String email= emailCaseInscrip.getText();
-        String mdp= mdpCaseInscrip.getText();
+
+        if (nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || mdp.isEmpty()) {
+            boutonLabelErreurInscrip.setText("Veuillez remplir tous les champs");
+            return;
+        }
+        String confirmationMdp = confirmationMDP.getText();
+        if (!mdp.equals(confirmationMdp)) {
+            boutonLabelErreurInscrip.setText("Les mots de passe ne correspondent pas !");
+            return;
+        }
         String mdpHachee = BCrypt.hashpw(mdp, BCrypt.gensalt());
 
-        Utilisateur utilisateur=new Utilisateur(nom, prenom, email, mdpHachee);
-        utilisateurRepository.ajouterUtilisateur(utilisateur);
-            try {
-                StartApplication.changeScene("ressources/appli.accueil/LoginView");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
 
+        Utilisateur nouvelUtilisateur = new Utilisateur(nom, prenom, email, mdpHachee);
+        utilisateurRepository.ajouterUtilisateur(nouvelUtilisateur);
+
+        System.out.println("Nouvel utilisateur inscrit avec succès !");
+
+        try {
+            StartApplication.changeScene("accueil/LoginView");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-
-
-
-
-
-
-
     }
+
+
+
+}
+
+
+
+
+
+
+
+
 
 
 

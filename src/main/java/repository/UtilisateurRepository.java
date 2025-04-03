@@ -34,45 +34,27 @@ public class UtilisateurRepository {
 
     public Utilisateur getUtilisateurParEmail(String email) {
         String sql = "SELECT * FROM utilisateurs WHERE email = ?";
-        int idUtilisateur = 0;
-        String nom = "";
-        String prenom = "";
-        String mdp = "";
-
-
         Utilisateur utilisateur = null;
+
         try {
             PreparedStatement stmt = connexion.prepareStatement(sql);
-            stmt.setString(1, utilisateur.getEmail());
-            stmt.executeQuery();
+            stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
 
-            System.out.println("Utilisateur trouvé avec succès !");
+            if (rs.next()) {
+                String nom = rs.getString("nom");
+                String prenom = rs.getString("prenom");
+                String mdp = rs.getString("mdp");
 
-            idUtilisateur = rs.getInt("idUtilisateur");
-            System.out.println("Votre id: " + idUtilisateur);
-
-            nom = rs.getString("nom");
-            System.out.println("Votre nom: " + nom);
-
-            prenom = rs.getString("prenom");
-            System.out.println("Votre prénom: " + prenom);
-
-            email = rs.getString("email");
-            System.out.println("Votre email: " + email);
-
-            mdp = rs.getString("mdp");
-            System.out.println("Votre mdp: " + mdp);
-
-
-
-            Utilisateur utilisateur1 = new Utilisateur(nom, prenom, email, mdp);
-
+                utilisateur = new Utilisateur(nom, prenom, email, mdp);
+            }
         } catch (SQLException e) {
             System.out.println("Erreur! Utilisateur non trouvé: " + e.getMessage());
         }
         return utilisateur;
     }
+
+
 
     public ArrayList<Utilisateur> getTousLesUtilisateurs() {
         ArrayList<Utilisateur> utilisateurs = new ArrayList<>();

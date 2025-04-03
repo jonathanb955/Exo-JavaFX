@@ -39,7 +39,7 @@ public class LoginController {
 
     private final UtilisateurRepository utilisateurRepository = new UtilisateurRepository();
 
-
+    @FXML
     public void seConnecter () throws IOException {
         Utilisateur utilisateurTrouve = utilisateurRepository.getUtilisateurParEmail(emailCase.getText());
         String email = emailCase.getText();
@@ -77,7 +77,13 @@ public class LoginController {
                 StartApplication.changeScene("accueil/Inscription");
         }
 
+    public void emailUtilisateur (){
+        System.out.println("Email: " + emailCase.getText());
+    }
 
+    public void mdpUtilisateur () {
+        System.out.println("Mot de passe: " + mdpCase.getText());
+    }
 
     @FXML
     protected void deconnexion() {
