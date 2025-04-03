@@ -9,6 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import repository.UtilisateurRepository;
 import model.Utilisateur;
+import session.SessionUtilisateur;
 
 import java.io.IOException;
 
@@ -46,22 +47,22 @@ public class LoginController {
 
         if (email.isEmpty() || mdp.isEmpty()) {
             labelErreur.setText("Veuillez remplir tous les champs");
-        } else if (utilisateurTrouve == null) {
-            System.out.println("Utilisateur non trouvé");
+        }else if (utilisateurTrouve == null) {
+            System.out.println("Utlisateur non trouvé");
         }else if(utilisateurTrouve.getMdp().equals(mdp)){
             Utilisateur utilisateur=new Utilisateur(email, mdp);
             utilisateurRepository.getUtilisateurParEmail(utilisateur.getEmail());
+            System.out.println("Connexion réussie pour : " + utilisateur.getNom());
+            SessionUtilisateur.getInstance().sauvegardeSession(utilisateur);
             StartApplication.changeScene("accueil/AccueilView");
+            labelErreur.setVisible(false);
+
         } else {
-            labelErreur.setText("Mot de passe incorrect!");
+            System.out.println("Échec de la connexion. Email ou mot de passe incorrect.");
+            labelErreur.setText("Email ou mot de passe incorrect.");
+            labelErreur.setVisible(true);
         }
     }
-
-
-
-
-
-
 
     public void mdpOublie (){
             System.out.println("Redirection vers le lien pour changer le mdp");
@@ -72,12 +73,13 @@ public class LoginController {
                 StartApplication.changeScene("accueil/Inscription");
         }
 
-        public void emailUtilisateur (){
-            System.out.println("Email: " + emailCase.getText());
-        }
 
-    public void mdpUtilisateur (){
-        System.out.println("Mot de passe: " + mdpCase.getText());
+
+    @FXML
+    protected void deconnexion() {
+        SessionUtilisateur.getInstance().deconnecter();
+        System.out.println("Utilisateur déconnecté.");
+
     }
     }
 
