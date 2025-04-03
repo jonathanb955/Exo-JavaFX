@@ -17,11 +17,8 @@
       </Text>
       <Button layoutX="438.0" layoutY="36.0" mnemonicParsing="false" text="Deconnexion" />
       <Button layoutX="408.0" layoutY="305.0" mnemonicParsing="false" text="Supprimer" />
-      <TableView fixedCellSize="5.0" layoutX="14.0" layoutY="74.0" prefHeight="319.0" prefWidth="359.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
+      <TableView fx:id="tableauUser" fixedCellSize="5.0" layoutX="14.0" layoutY="74.0" prefHeight="319.0" prefWidth="359.0">
+
       </TableView>
    </children>
 </Pane>
