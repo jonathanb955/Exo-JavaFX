@@ -9,7 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.Utilisateur;
-import repository.UtilisateurRepository;
+    import org.mindrot.jbcrypt.BCrypt;
+    import repository.UtilisateurRepository;
 
 
 
@@ -47,7 +48,10 @@ public class InscriptionController {
         private TextField prenomCase;
 
 
-    private final UtilisateurRepository utilisateurRepository = new UtilisateurRepository();
+
+
+    @FXML
+        private UtilisateurRepository utilisateurRepository = new UtilisateurRepository();
 
 
 
@@ -67,7 +71,9 @@ public class InscriptionController {
         }
         public void mdpUtil(){
                 String mdp = mdpCaseInscrip.getText();
+
         }
+
         public void confirmationMdpUtil(){
                 String confirmationMdp= confirmationMDP.getText();
 
@@ -97,11 +103,30 @@ public class InscriptionController {
                         boutonLabelErreurInscrip.setText("Le mot de passe ne corresponds pas à ce que vous avez écrit");
                 }
         }
+        public void InsriptionUtil(){
+        String nom= nomCase.getText();
+        String prenom= prenomCase.getText();
+        String email= emailCaseInscrip.getText();
+        String mdp= mdpCaseInscrip.getText();
+        String mdpHachee = BCrypt.hashpw(mdp, BCrypt.gensalt());
+
+        Utilisateur utilisateur=new Utilisateur(nom, prenom, email, mdpHachee);
+        utilisateurRepository.ajouterUtilisateur(utilisateur);
+            try {
+                StartApplication.changeScene("ressources/appli.accueil/LoginView");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
 
 
-    public UtilisateurRepository getUtilisateurRepository() {
-        return utilisateurRepository;
+
+
+
+
+
     }
-}
+
 
 

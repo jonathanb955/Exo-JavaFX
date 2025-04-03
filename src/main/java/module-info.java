@@ -11,6 +11,7 @@ module appli.todolist {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.sql;
+    requires jbcrypt;
 
     opens appli to javafx.fxml;
     exports appli;

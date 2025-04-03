@@ -16,14 +16,13 @@ public class UtilisateurRepository {
     }
 
     public void ajouterUtilisateur(Utilisateur utilisateur) {
-        String sql = "INSERT INTO utilisateurs (nom, prenom, email, mdp, role) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO utilisateurs (nom, prenom, email, mdp) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement stmt = connexion.prepareStatement(sql);
             stmt.setString(1, utilisateur.getNom());
             stmt.setString(2, utilisateur.getPrenom());
             stmt.setString(3, utilisateur.getEmail());
             stmt.setString(4, utilisateur.getMdp());
-            stmt.setString(5, utilisateur.getRole());
             stmt.executeUpdate();
             System.out.println("Utilisateur ajouté avec succès !");
         } catch (SQLException e) {
@@ -39,7 +38,7 @@ public class UtilisateurRepository {
         String nom = "";
         String prenom = "";
         String mdp = "";
-        String role = "";
+
 
         Utilisateur utilisateur = null;
         try {
@@ -65,10 +64,9 @@ public class UtilisateurRepository {
             mdp = rs.getString("mdp");
             System.out.println("Votre mdp: " + mdp);
 
-            role = rs.getString("role");
-            System.out.println("Votre role: " + role);
 
-            Utilisateur utilisateur1 = new Utilisateur(nom, prenom, email, mdp, role);
+
+            Utilisateur utilisateur1 = new Utilisateur(nom, prenom, email, mdp);
 
         } catch (SQLException e) {
             System.out.println("Erreur! Utilisateur non trouvé: " + e.getMessage());

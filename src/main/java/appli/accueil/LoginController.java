@@ -49,11 +49,14 @@ public class LoginController {
         } else if (utilisateurTrouve == null) {
             System.out.println("Utilisateur non trouvé");
         }else if(utilisateurTrouve.getMdp().equals(mdp)){
+            Utilisateur utilisateur=new Utilisateur(email, mdp);
+            utilisateurRepository.getUtilisateurParEmail(utilisateur.getEmail());
             StartApplication.changeScene("accueil/AccueilView");
         } else {
             labelErreur.setText("Mot de passe incorrect!");
         }
     }
+
 
 
 
