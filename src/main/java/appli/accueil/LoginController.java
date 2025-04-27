@@ -40,33 +40,39 @@ public class LoginController {
     private final UtilisateurRepository utilisateurRepository = new UtilisateurRepository();
 
     @FXML
-    public void seConnecter () throws IOException {
-        Utilisateur utilisateurTrouve = utilisateurRepository.getUtilisateurParEmail(emailCase.getText());
-        String email = emailCase.getText();
-        String mdp = mdpCase.getText();
+    public void seConnecter() throws IOException {
+        String email = emailCase.getText().trim();
+        String mdp = mdpCase.getText().trim();
 
         if (email.isEmpty() || mdp.isEmpty()) {
             labelErreur.setText("Veuillez remplir tous les champs");
-        }else if (utilisateurTrouve == null) {
-            System.out.println("Utlisateur non trouvé");
-        }else if(utilisateurTrouve.getMdp().equals(mdp)){
-            Utilisateur utilisateur=new Utilisateur(email, mdp);
-            utilisateurRepository.getUtilisateurParEmail(utilisateur.getEmail());
-            System.out.println("Connexion réussie pour : " + utilisateur.getNom());
-            SessionUtilisateur.getInstance().sauvegardeSession(utilisateur);
-            StartApplication.changeScene("accueil/AccueilView");
-            labelErreur.setVisible(false);
-
-        } else {
-            System.out.println("Échec de la connexion. Email ou mot de passe incorrect.");
-            labelErreur.setText("Email ou mot de passe incorrect.");
             labelErreur.setVisible(true);
+        } else {
+            Utilisateur utilisateurTrouve = utilisateurRepository.getUtilisateurParEmail(email);
+
+            if (utilisateurTrouve == null) {
+                System.out.println("Utilisateur non trouvé");
+                labelErreur.setText("Utilisateur non trouvé");
+                labelErreur.setVisible(true);
+            } else if (utilisateurTrouve.getMdp().trim().equals(mdp)) {
+                System.out.println("Connexion réussie");
+                SessionUtilisateur.getInstance().sauvegardeSession(utilisateurTrouve);
+                StartApplication.changeScene("accueil/AccueilView");
+                labelErreur.setVisible(false);
+            } else {
+                System.out.println("Échec de la connexion. Email ou mot de passe incorrect.");
+                labelErreur.setText("Email ou mot de passe incorrect.");
+                labelErreur.setVisible(true);
+            }
         }
+
         Utilisateur utilisateurActuel = SessionUtilisateur.getInstance().getUtilisateur();
         if (utilisateurActuel != null) {
             System.out.println("Utilisateur connecté : " + utilisateurActuel.getNom());
         }
-    }
+
+
+}
 
     public void mdpOublie (){
             System.out.println("Redirection vers le lien pour changer le mdp");

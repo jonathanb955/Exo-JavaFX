@@ -70,7 +70,6 @@ public class UtilisateurRepository {
 
         try {
             PreparedStatement stmt = connexion.prepareStatement(sql);
-            stmt.executeQuery();
             ResultSet rs = stmt.executeQuery();
             System.out.println("Utilisateur trouvé avec succès !");
 
