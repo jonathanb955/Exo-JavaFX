@@ -8,7 +8,9 @@
 <?import javafx.scene.text.Text?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.GestionUserController"
+>
    <children>
       <Text layoutX="21.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des Utilisateurs  " wrappingWidth="507.2662353515625">
          <font>
@@ -16,8 +18,8 @@
          </font>
       </Text>
       <Button layoutX="438.0" layoutY="36.0" mnemonicParsing="false" text="Deconnexion" />
-      <Button layoutX="408.0" layoutY="305.0" mnemonicParsing="false" text="Supprimer" />
-      <TableView fx:id="tableauUser" fixedCellSize="5.0" layoutX="14.0" layoutY="74.0" prefHeight="319.0" prefWidth="359.0">
+      <Button layoutX="408.0" layoutY="305.0" mnemonicParsing="false" fx:id="btnSupprimer" text="Supprimer" onAction="#supprimerUtilisateur" />
+      <TableView fx:id="tableauUser" fixedCellSize="5.0" layoutX="14.0" layoutY="74.0" prefHeight="319.0" prefWidth="359.0" onMouseClicked="#cliqueTableauEvent">
 
       </TableView>
    </children>

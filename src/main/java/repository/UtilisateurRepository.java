@@ -59,42 +59,26 @@ public class UtilisateurRepository {
     public ArrayList<Utilisateur> getTousLesUtilisateurs() {
         ArrayList<Utilisateur> utilisateurs = new ArrayList<>();
         String sql = "SELECT * FROM utilisateurs";
-        int idUtilisateur = 0;
-        String nom = "";
-        String prenom = "";
-        String email = "";
-        String mdp = "";
-        String role = "";
-
-        Utilisateur utilisateur = null;
 
         try {
             PreparedStatement stmt = connexion.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
-            System.out.println("Utilisateur trouvé avec succès !");
 
-            idUtilisateur = rs.getInt("idUtilisateur");
-            System.out.println("Votre id: " + idUtilisateur);
+            while (rs.next()) {
+                int idUtilisateur = rs.getInt("idUtilisateur");
+                String nom = rs.getString("nom");
+                String prenom = rs.getString("prenom");
+                String email = rs.getString("email");
+                String mdp = rs.getString("mdp");
+                String role = rs.getString("role");
 
-            nom = rs.getString("nom");
-            System.out.println("Votre nom: " + nom);
-
-            prenom = rs.getString("prenom");
-            System.out.println("Votre prénom: " + prenom);
-
-            email = rs.getString("email");
-            System.out.println("Votre email: " + email);
-
-            mdp = rs.getString("mdp");
-            System.out.println("Votre mdp: " + mdp);
-
-            role = rs.getString("role");
-            System.out.println("Votre role: " + role);
+                Utilisateur utilisateur = new Utilisateur(idUtilisateur, nom, prenom, email, mdp, role);
+                utilisateurs.add(utilisateur);
+            }
 
         } catch (SQLException e) {
-            System.out.println("Erreur! Utilisateur non trouvé: " + e.getMessage());
+            System.out.println("Erreur lors de la récupération des utilisateurs : " + e.getMessage());
         }
-
 
         return utilisateurs;
     }
@@ -102,31 +86,35 @@ public class UtilisateurRepository {
 
 
 
-    public void supprimerUtilisateurParEmail(Utilisateur utilisateur,String email) {
-        String sql = "DELETE FROM utilisateurs  WHERE email = ?";
+    public void supprimerUtilisateurParEmail(String email) {
+        String sql = "DELETE FROM utilisateurs WHERE email = ?";
         try {
             PreparedStatement stmt = connexion.prepareStatement(sql);
-            stmt.setString(1, utilisateur.getEmail());
+            stmt.setString(1, email);
             stmt.executeUpdate();
             System.out.println("Utilisateur supprimé avec succès !");
         } catch (SQLException e) {
             System.out.println("Erreur lors de la suppression de l'utilisateur : " + e.getMessage());
         }
-
     }
 
+
     public void mettreAJourUtilisateur(Utilisateur utilisateur) {
-        String sql = "UPDATE SET Utilisateur SET nom = ?, prenom = ?, mdp = ?, role = ? \n" + "WHERE email = ?";
+        String sql = "UPDATE utilisateurs SET nom = ?, prenom = ?, mdp = ?, role = ? WHERE email = ?";
         try {
             PreparedStatement stmt = connexion.prepareStatement(sql);
-            stmt.setString(1, utilisateur.getEmail());
+            stmt.setString(1, utilisateur.getNom());
+            stmt.setString(2, utilisateur.getPrenom());
+            stmt.setString(3, utilisateur.getMdp());
+            stmt.setString(4, utilisateur.getRole());
+            stmt.setString(5, utilisateur.getEmail());
             stmt.executeUpdate();
             System.out.println("Utilisateur modifié avec succès !");
         } catch (SQLException e) {
             System.out.println("Erreur lors de la modification de l'utilisateur : " + e.getMessage());
         }
-
     }
+
 
 
 }
