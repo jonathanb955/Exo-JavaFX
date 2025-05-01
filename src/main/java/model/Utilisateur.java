@@ -20,6 +20,7 @@ public class Utilisateur {
         this.prenom = prenom;
         this.email = email;
         this.mdp = mdp;
+        this.role = role;
 
 }
 
@@ -94,4 +95,7 @@ public class Utilisateur {
     public void setRole(String role) {
         this.role = role;
     }
+
+
 }
+

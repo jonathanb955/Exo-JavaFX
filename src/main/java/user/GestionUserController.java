@@ -75,7 +75,8 @@ public class GestionUserController implements Initializable {
                 ModificationUserController controller = (ModificationUserController) StartApplication.getControllerFromStage();
                 controller.initData(selection);
             } catch (IOException e) {
-                e.printStackTrace();
+                System.err.println("Erreur lors du chargement de la scène : " + e.getMessage());
+
             }
         }
     }
