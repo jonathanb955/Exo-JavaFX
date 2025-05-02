@@ -12,6 +12,7 @@ module appli.todolist {
     requires com.almasb.fxgl.all;
     requires java.sql;
     requires jbcrypt;
+    requires java.mail;
 
     opens appli to javafx.fxml;
     exports appli;
