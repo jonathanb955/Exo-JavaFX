@@ -86,11 +86,11 @@ public class UtilisateurRepository {
 
 
 
-    public void supprimerUtilisateurParEmail(String email) {
+    public void supprimerUtilisateur(Utilisateur utilisateur) {
         String sql = "DELETE FROM utilisateurs WHERE email = ?";
         try {
             PreparedStatement stmt = connexion.prepareStatement(sql);
-            stmt.setString(1, email);
+            stmt.setInt(1,utilisateur.getIdUtilisateur());
             stmt.executeUpdate();
             System.out.println("Utilisateur supprimé avec succès !");
         } catch (SQLException e) {

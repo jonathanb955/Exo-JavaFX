@@ -1,5 +1,14 @@
 package user;
 
+import appli.StartApplication;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import model.Utilisateur;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+
+import java.io.IOException;
+
 
 public class ModificationUserController {
 
@@ -29,6 +38,10 @@ public class ModificationUserController {
         utilisateurSel.setEmail(emailField.getText());
         utilisateurSel.setRole(roleField.getText());
 
-        StartApplication.changeScene("user/gestionUser");
+        try {
+            StartApplication.changeScene("GestionUser");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
